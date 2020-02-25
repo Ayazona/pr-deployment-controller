@@ -1,0 +1,8 @@
+vendor/
+test/
+certs/
+server
+bin/
+tmp/
+public/
+node_modules/

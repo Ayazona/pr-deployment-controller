@@ -1,0 +1,25 @@
+{
+  "name": "test-environment-manager",
+  "version": "1.0.0",
+  "description": "Manage test environments for pull requests",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kolonialno/test-environment-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kolonialno/test-environment-manager/issues"
+  },
+  "homepage": "https://github.com/kolonialno/test-environment-manager#readme",
+  "dependencies": {
+    "xterm": "^3.12.0"
+  },
+  "devDependencies": {
+    "css-loader": "^2.1.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}

@@ -1,0 +1,15 @@
+linters:
+  enable-all: true
+  disable:
+    - gochecknoglobals
+    - gochecknoinits
+    - unparam
+    - prealloc
+    - nakedret
+    - maligned
+    - funlen
+    - godox
+    - wsl
+    - gocognit
+    - gomnd
+  fast: false

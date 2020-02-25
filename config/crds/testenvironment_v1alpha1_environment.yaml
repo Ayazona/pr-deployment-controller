@@ -1,0 +1,255 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  creationTimestamp: null
+  labels:
+    controller-tools.k8s.io: "1.0"
+  name: environments.testenvironment.kolonial.no
+spec:
+  group: testenvironment.kolonial.no
+  names:
+    kind: Environment
+    plural: environments
+  scope: Namespaced
+  validation:
+    openAPIV3Schema:
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          properties:
+            containers:
+              description: Container to execute based on the build image
+              items:
+                properties:
+                  args:
+                    items:
+                      type: string
+                    type: array
+                  env:
+                    items:
+                      type: object
+                    type: array
+                  livenessProbe:
+                    type: object
+                  name:
+                    type: string
+                  ports:
+                    items:
+                      properties:
+                        name:
+                          type: string
+                        port:
+                          format: int64
+                          type: integer
+                      required:
+                      - name
+                      - port
+                      type: object
+                    type: array
+                  readinessProbe:
+                    type: object
+                  remoteTerminal:
+                    items:
+                      properties:
+                        cmd:
+                          items:
+                            type: string
+                          type: array
+                        name:
+                          type: string
+                      required:
+                      - name
+                      - cmd
+                      type: object
+                    type: array
+                  resources:
+                    type: object
+                required:
+                - name
+                type: object
+              type: array
+            databaseTemplate:
+              description: Claim database based on a template
+              type: string
+            ignoredUsers:
+              description: Dont build prs on the first commit from these users
+              items:
+                type: string
+              type: array
+            links:
+              description: Links included in the PR comment
+              items:
+                properties:
+                  title:
+                    type: string
+                  url:
+                    type: string
+                required:
+                - title
+                - url
+                type: object
+              type: array
+            nodeSelector:
+              description: Allow scheduling of pods on nodes with labels matching
+                this map
+              type: object
+            onDemand:
+              description: Dont deploy on demand builds automatically
+              type: boolean
+            redirects:
+              description: Redirect rules used to direct traffic to other locations
+              items:
+                properties:
+                  destination:
+                    type: string
+                  urlPrefix:
+                    type: string
+                required:
+                - urlPrefix
+                - destination
+                type: object
+              type: array
+            routing:
+              description: Routing rules used to reach the environment containers
+              items:
+                properties:
+                  containerName:
+                    type: string
+                  port:
+                    format: int64
+                    type: integer
+                  urlPrefix:
+                    type: string
+                required:
+                - containerName
+                - port
+                type: object
+              type: array
+            services:
+              description: Required background services, databases, caches
+              items:
+                properties:
+                  args:
+                    items:
+                      type: string
+                    type: array
+                  env:
+                    items:
+                      type: object
+                    type: array
+                  image:
+                    type: string
+                  initContainers:
+                    items:
+                      properties:
+                        args:
+                          items:
+                            type: string
+                          type: array
+                        command:
+                          items:
+                            type: string
+                          type: array
+                        env:
+                          items:
+                            type: object
+                          type: array
+                        image:
+                          type: string
+                        name:
+                          type: string
+                      required:
+                      - name
+                      - image
+                      type: object
+                    type: array
+                  livenessProbe:
+                    type: object
+                  name:
+                    type: string
+                  ports:
+                    items:
+                      properties:
+                        name:
+                          type: string
+                        port:
+                          format: int64
+                          type: integer
+                      required:
+                      - name
+                      - port
+                      type: object
+                    type: array
+                  protected:
+                    type: boolean
+                  readinessProbe:
+                    type: object
+                  resources:
+                    type: object
+                  sharedDirs:
+                    items:
+                      type: string
+                    type: array
+                required:
+                - name
+                - image
+                - protected
+                type: object
+              type: array
+            sharedEnv:
+              description: Environment variables shared by all tasks and containers
+              items:
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                required:
+                - name
+                - value
+                type: object
+              type: array
+            tasks:
+              description: Tasks to execute before starting the long-running containers
+              items:
+                properties:
+                  args:
+                    items:
+                      type: string
+                    type: array
+                  env:
+                    items:
+                      type: object
+                    type: array
+                  name:
+                    type: string
+                  resources:
+                    type: object
+                required:
+                - name
+                type: object
+              type: array
+          required:
+          - containers
+          - routing
+          type: object
+        status:
+          type: object
+  version: v1alpha1
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
