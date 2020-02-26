@@ -1,7 +1,7 @@
 package apis
 
 import (
-	"github.com/kolonialno/test-environment-manager/pkg/apis/networking/v1alpha3"
+	"github.com/kolonialno/pr-deployment-controller/pkg/apis/networking/v1alpha3"
 )
 
 func init() {

@@ -13,7 +13,7 @@ RUN set -e \
 RUN update-ca-certificates
 
 # Copy application
-COPY bin/test-environment-manager /app
+COPY bin/pr-deployment-controller /app
 COPY public /app/public/
 
-ENTRYPOINT ["/app/test-environment-manager"]
+ENTRYPOINT ["/app/pr-deployment-controller"]

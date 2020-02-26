@@ -1,7 +1,7 @@
 package build
 
 import (
-	"github.com/kolonialno/test-environment-manager/pkg/controller/databasetemplate"
+	"github.com/kolonialno/pr-deployment-controller/pkg/controller/databasetemplate"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/selection"
 )

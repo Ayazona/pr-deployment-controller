@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kolonialno/test-environment-manager/pkg/docker"
-	"github.com/kolonialno/test-environment-manager/pkg/github"
-	"github.com/kolonialno/test-environment-manager/pkg/k8s"
+	"github.com/kolonialno/pr-deployment-controller/pkg/docker"
+	"github.com/kolonialno/pr-deployment-controller/pkg/github"
+	"github.com/kolonialno/pr-deployment-controller/pkg/k8s"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/sirupsen/logrus"

@@ -4,8 +4,8 @@ import (
 	"context"
 	"sync"
 
-	testenvironmentv1alpha1 "github.com/kolonialno/test-environment-manager/pkg/apis/testenvironment/v1alpha1"
-	"github.com/kolonialno/test-environment-manager/pkg/controller/databasetemplate"
+	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
+	"github.com/kolonialno/pr-deployment-controller/pkg/controller/databasetemplate"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 )

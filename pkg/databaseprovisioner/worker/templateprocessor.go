@@ -8,11 +8,11 @@ import (
 	"sync"
 	"time"
 
-	testenvironmentv1alpha1 "github.com/kolonialno/test-environment-manager/pkg/apis/testenvironment/v1alpha1"
-	"github.com/kolonialno/test-environment-manager/pkg/controller/databasetemplate"
-	"github.com/kolonialno/test-environment-manager/pkg/databaseprovisioner/fetcher"
-	"github.com/kolonialno/test-environment-manager/pkg/databaseprovisioner/restore"
-	"github.com/kolonialno/test-environment-manager/pkg/k8s"
+	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
+	"github.com/kolonialno/pr-deployment-controller/pkg/controller/databasetemplate"
+	"github.com/kolonialno/pr-deployment-controller/pkg/databaseprovisioner/fetcher"
+	"github.com/kolonialno/pr-deployment-controller/pkg/databaseprovisioner/restore"
+	"github.com/kolonialno/pr-deployment-controller/pkg/k8s"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/sirupsen/logrus"
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -89,7 +89,7 @@ func (t *templateprocessor) SetOpts(opts *templateprocessorOpts) {
 }
 
 func (t *templateprocessor) createTempDir() error {
-	dir, err := ioutil.TempDir("", "test-environment-manager")
+	dir, err := ioutil.TempDir("", "pr-deployment-controller")
 	if err != nil {
 		return err
 	}

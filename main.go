@@ -6,7 +6,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"k8s.io/klog"
 
-	"github.com/kolonialno/test-environment-manager/cmd"
+	"github.com/kolonialno/pr-deployment-controller/cmd"
 )
 
 // Noop klog (kubernetes client logger)

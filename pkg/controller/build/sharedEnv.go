@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"text/template"
 
-	"github.com/kolonialno/test-environment-manager/pkg/internal"
+	"github.com/kolonialno/pr-deployment-controller/pkg/internal"
 
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"

@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
-	testenvironmentv1alpha1 "github.com/kolonialno/test-environment-manager/pkg/apis/testenvironment/v1alpha1"
-	"github.com/kolonialno/test-environment-manager/pkg/github"
-	"github.com/kolonialno/test-environment-manager/pkg/internal"
-	"github.com/kolonialno/test-environment-manager/pkg/k8s"
+	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
+	"github.com/kolonialno/pr-deployment-controller/pkg/github"
+	"github.com/kolonialno/pr-deployment-controller/pkg/internal"
+	"github.com/kolonialno/pr-deployment-controller/pkg/k8s"
 	"github.com/sirupsen/logrus"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )

@@ -8,7 +8,7 @@ import (
 
 	"github.com/oklog/oklog/pkg/group"
 
-	"github.com/kolonialno/test-environment-manager/pkg/k8s"
+	"github.com/kolonialno/pr-deployment-controller/pkg/k8s"
 
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/client-go/kubernetes/scheme"

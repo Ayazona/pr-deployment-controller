@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kolonialno/test-environment-manager/pkg/apis/networking/v1alpha3"
-	testenvironmentv1alpha1 "github.com/kolonialno/test-environment-manager/pkg/apis/testenvironment/v1alpha1"
-	"github.com/kolonialno/test-environment-manager/pkg/github"
+	"github.com/kolonialno/pr-deployment-controller/pkg/apis/networking/v1alpha3"
+	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
+	"github.com/kolonialno/pr-deployment-controller/pkg/github"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 	appsv1 "k8s.io/api/apps/v1"

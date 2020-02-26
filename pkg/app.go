@@ -7,6 +7,6 @@ type app struct {
 
 // App stores internal app state
 var App = app{
-	Name:        "test-environment-manager",
+	Name:        "pr-deployment-controller",
 	Description: "Kubernetes operator for management of PR test environments in a cluster.",
 }
