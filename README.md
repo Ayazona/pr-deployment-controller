@@ -1,4 +1,4 @@
-# test-environment-manager
+# pr-deployment-controller
 
 > Manage test environments for pull requests
 
@@ -8,8 +8,8 @@ Make sure you have [GO](https://golang.org/doc/install) installed and
 configured your [GOPATH](https://github.com/golang/go/wiki/SettingGOPATH).
 
 ```
-$ git clone git@github.com:kolonialno/test-environment-manager.git $GOPATH/src/github.com/kolonialno/test-environment-manager
-$ cd $GOPATH/src/github.com/kolonialno/test-environment-manager
+$ git clone git@github.com:kolonialno/pr-deployment-controller.git $GOPATH/src/github.com/kolonialno/pr-deployment-controller
+$ cd $GOPATH/src/github.com/kolonialno/pr-deployment-controller
 $ make vendor # Install dependencies
 ```
 
@@ -17,7 +17,7 @@ $ make vendor # Install dependencies
 
 ### Packages
 
-The test-environment-manager uses the operator-pattern to watch
+The pr-deployment-controller uses the operator-pattern to watch
 test environments inside the Kubernetes cluster. The controller
 is responsible for the following tasks:
 
@@ -28,7 +28,7 @@ is responsible for the following tasks:
 - Remove stale builds
 - Orchestrate creation of databases, including data preparation
 
-To do this, the test-environment-manager consist of the following packages:
+To do this, the pr-deployment-controller consist of the following packages:
 
 - apis: Kubernetes api definitions for custom resources
 - builder: Background worker orchestrating docker builds

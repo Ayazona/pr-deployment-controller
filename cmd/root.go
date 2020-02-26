@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/kolonialno/test-environment-manager/pkg"
+	"github.com/kolonialno/pr-deployment-controller/pkg"
 	"github.com/spf13/cobra"
 )
 

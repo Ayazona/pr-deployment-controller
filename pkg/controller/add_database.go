@@ -1,6 +1,6 @@
 package controller
 
-import "github.com/kolonialno/test-environment-manager/pkg/controller/database"
+import "github.com/kolonialno/pr-deployment-controller/pkg/controller/database"
 
 func init() {
 	// AddToManagerFuncs is a list of functions to create controllers and add them to a manager.

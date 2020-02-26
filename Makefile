@@ -1,6 +1,6 @@
 SHELL    = /bin/bash
 AUTHOR   = kolonialno
-PACKAGE  = test-environment-manager
+PACKAGE  = pr-deployment-controller
 REGISTRY = gcr.io/kolonial-no-test-environment
 
 DATE    ?= $(shell date +%FT%T%z)

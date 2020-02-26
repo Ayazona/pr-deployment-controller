@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/kolonialno/test-environment-manager/pkg/internal"
+	"github.com/kolonialno/pr-deployment-controller/pkg/internal"
 
-	"github.com/kolonialno/test-environment-manager/pkg/apis/networking/v1alpha3"
+	"github.com/kolonialno/pr-deployment-controller/pkg/apis/networking/v1alpha3"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

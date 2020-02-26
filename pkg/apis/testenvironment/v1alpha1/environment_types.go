@@ -84,7 +84,7 @@ type RedirectSpec struct {
 	Destination string `json:"destination"`
 }
 
-// LinkSpec defines a link that the test-environment-manager
+// LinkSpec defines a link that the pr-deployment-controller
 // adds to the PR comment
 type LinkSpec struct {
 	Title string `json:"title"`

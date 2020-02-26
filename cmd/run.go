@@ -9,21 +9,21 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/kolonialno/test-environment-manager/cmd/internal"
-	"github.com/kolonialno/test-environment-manager/pkg"
-	"github.com/kolonialno/test-environment-manager/pkg/apis"
-	"github.com/kolonialno/test-environment-manager/pkg/builder"
-	"github.com/kolonialno/test-environment-manager/pkg/cleanup"
-	"github.com/kolonialno/test-environment-manager/pkg/controller"
-	"github.com/kolonialno/test-environment-manager/pkg/controller/build"
-	"github.com/kolonialno/test-environment-manager/pkg/controller/database"
-	"github.com/kolonialno/test-environment-manager/pkg/databaseprovisioner/worker"
-	"github.com/kolonialno/test-environment-manager/pkg/debug"
-	"github.com/kolonialno/test-environment-manager/pkg/docker"
-	"github.com/kolonialno/test-environment-manager/pkg/github"
-	"github.com/kolonialno/test-environment-manager/pkg/k8s"
-	"github.com/kolonialno/test-environment-manager/pkg/status"
-	"github.com/kolonialno/test-environment-manager/pkg/webhook"
+	"github.com/kolonialno/pr-deployment-controller/cmd/internal"
+	"github.com/kolonialno/pr-deployment-controller/pkg"
+	"github.com/kolonialno/pr-deployment-controller/pkg/apis"
+	"github.com/kolonialno/pr-deployment-controller/pkg/builder"
+	"github.com/kolonialno/pr-deployment-controller/pkg/cleanup"
+	"github.com/kolonialno/pr-deployment-controller/pkg/controller"
+	"github.com/kolonialno/pr-deployment-controller/pkg/controller/build"
+	"github.com/kolonialno/pr-deployment-controller/pkg/controller/database"
+	"github.com/kolonialno/pr-deployment-controller/pkg/databaseprovisioner/worker"
+	"github.com/kolonialno/pr-deployment-controller/pkg/debug"
+	"github.com/kolonialno/pr-deployment-controller/pkg/docker"
+	"github.com/kolonialno/pr-deployment-controller/pkg/github"
+	"github.com/kolonialno/pr-deployment-controller/pkg/k8s"
+	"github.com/kolonialno/pr-deployment-controller/pkg/status"
+	"github.com/kolonialno/pr-deployment-controller/pkg/webhook"
 	"github.com/oklog/oklog/pkg/group"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
@@ -210,7 +210,7 @@ var runCmd = &cobra.Command{
 		mgr, err := manager.New(cfg, manager.Options{
 			LeaderElection:          true,
 			LeaderElectionNamespace: namespace,
-			LeaderElectionID:        "test-environment-manager-lock",
+			LeaderElectionID:        "pr-deployment-controller-lock",
 			SyncPeriod:              &syncPeriod,
 		})
 		if err != nil {

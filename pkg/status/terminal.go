@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/gorilla/websocket"
-	testenvironmentv1alpha1 "github.com/kolonialno/test-environment-manager/pkg/apis/testenvironment/v1alpha1"
-	"github.com/kolonialno/test-environment-manager/pkg/k8s"
+	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
+	"github.com/kolonialno/pr-deployment-controller/pkg/k8s"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/tools/remotecommand"

@@ -2,32 +2,32 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: test-environment-manager
+  name: pr-deployment-controller
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: test-environment-manager
-  namespace: test-environment-manager
+  name: pr-deployment-controller
+  namespace: pr-deployment-controller
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: test-environment-manager
+  name: pr-deployment-controller
 subjects:
   - kind: ServiceAccount
-    name: test-environment-manager
-    namespace: test-environment-manager
+    name: pr-deployment-controller
+    namespace: pr-deployment-controller
 roleRef:
   kind: ClusterRole
-  name: test-environment-manager
+  name: pr-deployment-controller
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: test-environment-manager
-  namespace: test-environment-manager
+  name: pr-deployment-controller
+  namespace: pr-deployment-controller
 data:
   cert.pem: <docker-client-cert>
   key.pem: <docker-client-key>
@@ -36,17 +36,17 @@ data:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: test-environment-manager
-  namespace: test-environment-manager
+  name: pr-deployment-controller
+  namespace: pr-deployment-controller
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: test-environment-manager
+        app: pr-deployment-controller
         version: v1
     spec:
-      serviceAccountName: test-environment-manager
+      serviceAccountName: pr-deployment-controller
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -55,14 +55,14 @@ spec:
       containers:
         - image: <image>
           imagePullPolicy: Always
-          name: test-environment-manager
+          name: pr-deployment-controller
           args:
             - run
             - --namespace=$(POD_NAMESPACE)
             - --dockerHost=<docker-host>
-            - --dockerCertFile=/var/lib/test-environment-manager/cert.pem
-            - --dockerKeyFile=/var/lib/test-environment-manager/key.pem
-            - --dockerCAFile=/var/lib/test-environment-manager/ca.pem
+            - --dockerCertFile=/var/lib/pr-deployment-controller/cert.pem
+            - --dockerKeyFile=/var/lib/pr-deployment-controller/key.pem
+            - --dockerCAFile=/var/lib/pr-deployment-controller/ca.pem
             - --dockerRegistry=<docker-registry>
             - --dockerRegistryUsername=<docker-registry-username>
             - --dockerRegistryPassword=<docker-registry-password>
@@ -93,13 +93,13 @@ spec:
             - containerPort: 9090
               name: http-metrics
           volumeMounts:
-            - name: test-environment-manager
-              mountPath: "/var/lib/test-environment-manager"
+            - name: pr-deployment-controller
+              mountPath: "/var/lib/pr-deployment-controller"
               readOnly: true
       volumes:
-        - name: test-environment-manager
+        - name: pr-deployment-controller
           secret:
-            secretName: test-environment-manager
+            secretName: pr-deployment-controller
             items:
               - key: cert.pem
                 path: cert.pem
@@ -111,14 +111,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-environment-manager
-  namespace: test-environment-manager
+  name: pr-deployment-controller
+  namespace: pr-deployment-controller
   labels:
-    app: test-environment-manager
+    app: pr-deployment-controller
 spec:
   ports:
     - name: http-webhooks
       port: 9000
       targetPort: 9000
   selector:
-    app: test-environment-manager
+    app: pr-deployment-controller

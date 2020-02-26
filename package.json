@@ -1,5 +1,5 @@
 {
-  "name": "test-environment-manager",
+  "name": "pr-deployment-controller",
   "version": "1.0.0",
   "description": "Manage test environments for pull requests",
   "scripts": {
@@ -7,12 +7,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kolonialno/test-environment-manager.git"
+    "url": "git+https://github.com/kolonialno/pr-deployment-controller.git"
   },
   "bugs": {
-    "url": "https://github.com/kolonialno/test-environment-manager/issues"
+    "url": "https://github.com/kolonialno/pr-deployment-controller/issues"
   },
-  "homepage": "https://github.com/kolonialno/test-environment-manager#readme",
+  "homepage": "https://github.com/kolonialno/pr-deployment-controller#readme",
   "dependencies": {
     "xterm": "^3.12.0"
   },

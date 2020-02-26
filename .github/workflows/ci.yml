@@ -14,9 +14,9 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v1
         with:
-          path: go/src/github.com/kolonialno/test-environment-manager/
+          path: go/src/github.com/kolonialno/pr-deployment-controller/
 
       - name: Build
         run: make test
         env:
-          GOPATH: /home/runner/work/test-environment-manager/go
+          GOPATH: /home/runner/work/pr-deployment-controller/go

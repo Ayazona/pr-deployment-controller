@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/gorilla/mux"
-	"github.com/kolonialno/test-environment-manager/pkg/builder"
-	"github.com/kolonialno/test-environment-manager/pkg/github"
+	"github.com/kolonialno/pr-deployment-controller/pkg/builder"
+	"github.com/kolonialno/pr-deployment-controller/pkg/github"
 	"github.com/sirupsen/logrus"
 )
 
