@@ -7,7 +7,6 @@ import (
 	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
-	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
@@ -35,30 +34,30 @@ func (br *buildReconciler) reconcileServiceDeployment(service testenvironmentv1a
 
 	var terminationGracePeriodSeconds int64
 
-	var volumes []v1.Volume
+	var volumes []corev1.Volume
 	for id := range service.SharedDirs {
-		volumes = append(volumes, v1.Volume{
+		volumes = append(volumes, corev1.Volume{
 			Name: fmt.Sprintf("shareddir-%d", id),
-			VolumeSource: v1.VolumeSource{
-				EmptyDir: &v1.EmptyDirVolumeSource{},
+			VolumeSource: corev1.VolumeSource{
+				EmptyDir: &corev1.EmptyDirVolumeSource{},
 			},
 		})
 	}
 
-	var volumeMounts []v1.VolumeMount
+	var volumeMounts []corev1.VolumeMount
 	for id, sharedDir := range service.SharedDirs {
-		volumeMounts = append(volumeMounts, v1.VolumeMount{
+		volumeMounts = append(volumeMounts, corev1.VolumeMount{
 			Name:      fmt.Sprintf("shareddir-%d", id),
 			MountPath: sharedDir,
 		})
 	}
 
-	var initContainers []v1.Container
+	var initContainers []corev1.Container
 	for _, initContainer := range service.InitContainers {
-		initContainers = append(initContainers, v1.Container{
+		initContainers = append(initContainers, corev1.Container{
 			Name:            initContainer.Name,
 			Image:           initContainer.Image,
-			ImagePullPolicy: v1.PullIfNotPresent,
+			ImagePullPolicy: corev1.PullIfNotPresent,
 			Env:             initContainer.Env,
 			Command:         initContainer.Command,
 			Args:            initContainer.Args,
@@ -83,11 +82,11 @@ func (br *buildReconciler) reconcileServiceDeployment(service testenvironmentv1a
 					TerminationGracePeriodSeconds: &terminationGracePeriodSeconds,
 					NodeSelector:                  br.environment.Spec.NodeSelector,
 					InitContainers:                initContainers,
-					Containers: []v1.Container{
+					Containers: []corev1.Container{
 						{
 							Name:            service.Name,
 							Image:           service.Image,
-							ImagePullPolicy: v1.PullIfNotPresent,
+							ImagePullPolicy: corev1.PullIfNotPresent,
 							Args:            service.Args,
 							Env:             service.Env,
 							Ports:           convertContainerPorts(service.Ports),

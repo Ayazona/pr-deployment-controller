@@ -8,11 +8,9 @@ import (
 	"github.com/kolonialno/pr-deployment-controller/pkg/apis/networking/v1alpha3"
 	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
 	"github.com/kolonialno/pr-deployment-controller/pkg/github"
-	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
-	v1 "k8s.io/api/core/v1"
 	rbacv1 "k8s.io/api/rbac/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -27,7 +25,7 @@ import (
 
 // Options gives the build access to values from the main application
 type Options struct {
-	Logger            *logrus.Entry
+	Logger            *log.Entry
 	Namespace         string
 	BuildPrefix       string
 	ClusterDomain     string
@@ -92,7 +90,7 @@ func add(mgr manager.Manager, r reconcile.Reconciler) error {
 	}
 
 	// Watch for changes to Namespaces
-	err = c.Watch(&source.Kind{Type: &v1.Namespace{}}, &handler.EnqueueRequestForOwner{
+	err = c.Watch(&source.Kind{Type: &corev1.Namespace{}}, &handler.EnqueueRequestForOwner{
 		IsController: true,
 		OwnerType:    &testenvironmentv1alpha1.Build{},
 	})
@@ -101,7 +99,7 @@ func add(mgr manager.Manager, r reconcile.Reconciler) error {
 	}
 
 	// Watch for changes to ServiceAccounts
-	err = c.Watch(&source.Kind{Type: &v1.ServiceAccount{}}, &handler.EnqueueRequestForOwner{
+	err = c.Watch(&source.Kind{Type: &corev1.ServiceAccount{}}, &handler.EnqueueRequestForOwner{
 		IsController: true,
 		OwnerType:    &testenvironmentv1alpha1.Build{},
 	})

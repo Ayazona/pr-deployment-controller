@@ -2,7 +2,6 @@ package v1alpha1
 
 import (
 	corev1 "k8s.io/api/core/v1"
-	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -32,25 +31,25 @@ type InitContainerSpec struct {
 
 // ServiceSpec defines a service required by the environment
 type ServiceSpec struct {
-	Name           string                  `json:"name"`
-	Image          string                  `json:"image"`
-	Ports          []PortSpec              `json:"ports,omitempty"`
-	Env            []corev1.EnvVar         `json:"env,omitempty"`
-	Args           []string                `json:"args,omitempty"`
-	Protected      bool                    `json:"protected"`
-	ReadinessProbe *v1.Probe               `json:"readinessProbe,omitempty"`
-	LivenessProbe  *v1.Probe               `json:"livenessProbe,omitempty"`
-	Resources      v1.ResourceRequirements `json:"resources,omitempty"`
-	InitContainers []InitContainerSpec     `json:"initContainers,omitempty"`
-	SharedDirs     []string                `json:"sharedDirs,omitempty"`
+	Name           string                      `json:"name"`
+	Image          string                      `json:"image"`
+	Ports          []PortSpec                  `json:"ports,omitempty"`
+	Env            []corev1.EnvVar             `json:"env,omitempty"`
+	Args           []string                    `json:"args,omitempty"`
+	Protected      bool                        `json:"protected"`
+	ReadinessProbe *corev1.Probe               `json:"readinessProbe,omitempty"`
+	LivenessProbe  *corev1.Probe               `json:"livenessProbe,omitempty"`
+	Resources      corev1.ResourceRequirements `json:"resources,omitempty"`
+	InitContainers []InitContainerSpec         `json:"initContainers,omitempty"`
+	SharedDirs     []string                    `json:"sharedDirs,omitempty"`
 }
 
 // TaskSpec defines the tasks based on the build image to run (migrations)
 type TaskSpec struct {
-	Name      string                  `json:"name"`
-	Env       []corev1.EnvVar         `json:"env,omitempty"`
-	Args      []string                `json:"args,omitempty"`
-	Resources v1.ResourceRequirements `json:"resources,omitempty"`
+	Name      string                      `json:"name"`
+	Env       []corev1.EnvVar             `json:"env,omitempty"`
+	Args      []string                    `json:"args,omitempty"`
+	Resources corev1.ResourceRequirements `json:"resources,omitempty"`
 }
 
 // ExecSpec defines a command that is available through the remote terminal
@@ -61,14 +60,14 @@ type ExecSpec struct {
 
 // ContainerSpec defines the containers to start based on the build image
 type ContainerSpec struct {
-	Name           string                  `json:"name"`
-	Ports          []PortSpec              `json:"ports,omitempty"`
-	Env            []corev1.EnvVar         `json:"env,omitempty"`
-	Args           []string                `json:"args,omitempty"`
-	ReadinessProbe *v1.Probe               `json:"readinessProbe,omitempty"`
-	LivenessProbe  *v1.Probe               `json:"livenessProbe,omitempty"`
-	Resources      v1.ResourceRequirements `json:"resources,omitempty"`
-	RemoteTerminal []ExecSpec              `json:"remoteTerminal,omitempty"`
+	Name           string                      `json:"name"`
+	Ports          []PortSpec                  `json:"ports,omitempty"`
+	Env            []corev1.EnvVar             `json:"env,omitempty"`
+	Args           []string                    `json:"args,omitempty"`
+	ReadinessProbe *corev1.Probe               `json:"readinessProbe,omitempty"`
+	LivenessProbe  *corev1.Probe               `json:"livenessProbe,omitempty"`
+	Resources      corev1.ResourceRequirements `json:"resources,omitempty"`
+	RemoteTerminal []ExecSpec                  `json:"remoteTerminal,omitempty"`
 }
 
 // RoutingSpec defines the routing rules into the environment
