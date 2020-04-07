@@ -12,7 +12,6 @@ import (
 	"github.com/kolonialno/pr-deployment-controller/pkg/k8s"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -29,7 +28,7 @@ type Builder interface {
 }
 
 type baseBuilder struct {
-	logger    *logrus.Entry
+	logger    *log.Entry
 	options   *Options
 	scheduler *scheduler
 
@@ -53,7 +52,7 @@ type Options struct {
 }
 
 // New returns a new builder controller
-func New(logger *logrus.Entry, options *Options) (Builder, error) {
+func New(logger *log.Entry, options *Options) (Builder, error) {
 	return &baseBuilder{
 		logger:    logger,
 		options:   options,

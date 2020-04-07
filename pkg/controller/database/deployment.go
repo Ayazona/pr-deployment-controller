@@ -8,7 +8,6 @@ import (
 	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
-	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -109,7 +108,7 @@ func baseContainer(
 
 	return &corev1.Container{
 		Image:           image,
-		ImagePullPolicy: v1.PullIfNotPresent,
+		ImagePullPolicy: corev1.PullIfNotPresent,
 		Ports: []corev1.ContainerPort{
 			{
 				Name:          "tcp-postgres",
@@ -117,7 +116,7 @@ func baseContainer(
 				Protocol:      corev1.ProtocolTCP,
 			},
 		},
-		Env: []v1.EnvVar{
+		Env: []corev1.EnvVar{
 			{Name: "POSTGRES_DB", Value: database.Status.DatabaseName},
 			{Name: "POSTGRES_USER", Value: database.Status.Username},
 			{Name: "POSTGRES_PASSWORD", Value: database.Status.Password},

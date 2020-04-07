@@ -28,7 +28,7 @@ func newHTTPClient(certFile, keyFile, caCertFile string) (*http.Client, error) {
 		Certificates: []tls.Certificate{cert},
 		RootCAs:      caCertPool,
 	}
-	tlsConfig.BuildNameToCertificate()
+
 	transport := &http.Transport{TLSClientConfig: tlsConfig}
 
 	return &http.Client{

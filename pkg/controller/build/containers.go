@@ -6,7 +6,6 @@ import (
 	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
-	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
@@ -53,16 +52,16 @@ func (br *buildReconciler) reconcileContainerDeployment(
 					ServiceAccountName:            br.serviceAccountName,
 					TerminationGracePeriodSeconds: &terminationGracePeriodSeconds,
 					NodeSelector:                  br.environment.Spec.NodeSelector,
-					Containers: []v1.Container{
+					Containers: []corev1.Container{
 						{
 							Name:            service.Name,
 							Image:           br.build.Spec.Image,
-							ImagePullPolicy: v1.PullIfNotPresent,
+							ImagePullPolicy: corev1.PullIfNotPresent,
 							Args:            service.Args,
-							EnvFrom: []v1.EnvFromSource{
+							EnvFrom: []corev1.EnvFromSource{
 								{
-									ConfigMapRef: &v1.ConfigMapEnvSource{
-										LocalObjectReference: v1.LocalObjectReference{Name: fmt.Sprintf("%ssharedenv", options.BuildPrefix)},
+									ConfigMapRef: &corev1.ConfigMapEnvSource{
+										LocalObjectReference: corev1.LocalObjectReference{Name: fmt.Sprintf("%ssharedenv", options.BuildPrefix)},
 										Optional:             &configMapRefOptional,
 									},
 								},

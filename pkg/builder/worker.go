@@ -11,13 +11,12 @@ import (
 	testenvironmentv1alpha1 "github.com/kolonialno/pr-deployment-controller/pkg/apis/testenvironment/v1alpha1"
 	"github.com/kolonialno/pr-deployment-controller/pkg/github"
 	"github.com/kolonialno/pr-deployment-controller/pkg/internal"
-	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 )
 
 type worker struct {
 	id     int
-	logger *logrus.Entry
+	logger *log.Entry
 
 	jobs    <-chan *job
 	results chan<- *jobResult
@@ -29,7 +28,7 @@ type worker struct {
 // newWorker creates a new worker (used to build and push docker images)
 func newWorker(
 	id int,
-	logger *logrus.Entry,
+	logger *log.Entry,
 	jobs <-chan *job,
 	results chan<- *jobResult,
 	scheduler *scheduler,
