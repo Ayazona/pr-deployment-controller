@@ -128,15 +128,15 @@ func (p *postgresRestore) wait(ctx context.Context) error {
 				continue
 			}
 
-			result, err := db.Query("select 1")
-			if err != nil {
-				db.Close() // nolint:errcheck
+			rows, err := db.Query("select 1")
+			if err != nil || rows.Err() != nil {
+				db.Close() // nolint: errcheck
 				time.Sleep(time.Second)
 				continue
 			}
 
-			result.Close() // nolint:errcheck
-			db.Close()     // nolint:errcheck
+			rows.Close() // nolint: errcheck
+			db.Close()   // nolint: errcheck
 
 			close(doneChan)
 			return
