@@ -12,4 +12,10 @@ linters:
     - wsl
     - gocognit
     - gomnd
+    - godot
+    - nolintlint
+    - goerr113
+    - testpackage
+    - gosec
+    - nestif
   fast: false
